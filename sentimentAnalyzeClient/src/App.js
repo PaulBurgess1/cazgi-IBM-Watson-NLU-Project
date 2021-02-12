@@ -5,6 +5,11 @@ import React from 'react';
 import axios from 'axios';
 
 class App extends React.Component {
+  componentDidMount(){//Title change
+        document.title = "Sentiment Analyzer"
+    }
+    
+  
   state = {innercomp:<textarea rows="4" cols="50" id="textinput"/>,
             mode: "text",
           sentimentOutput:[],
@@ -55,7 +60,8 @@ class App extends React.Component {
       } else if (response.data === "negative"){
         output = <div style={{color:"red",fontSize:20}}>{response.data}</div>
       } else {
-        output = <div style={{color:"orange",fontSize:20}}>{response.data}</div>
+        //changed from Orange to yellow
+        output = <div style={{color:"yellow",fontSize:20}}>{response.data}</div>
       }
       this.setState({sentimentOutput:output});
     });
@@ -79,8 +85,12 @@ class App extends React.Component {
   
 
   render() {
+    
+
     return (  
+        
       <div className="App">
+
       <button className="btn btn-info" onClick={this.renderTextArea}>Text</button>
         <button className="btn btn-dark"  onClick={this.renderTextBox}>URL</button>
         <br/><br/>
